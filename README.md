@@ -1,1 +1,1 @@
-# hostel-smart
+# HMS
