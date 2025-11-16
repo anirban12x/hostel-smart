@@ -57,6 +57,7 @@ def student_dashboard(request):
 
 # Admin Dashboard
 @login_required
+@user_passes_test(is_admin, login_url='login_view')
 def admin_dashboard(request):
     try:
         # Get all users
@@ -318,6 +319,8 @@ def logout_view(request):
     return redirect('home')
 
 # Admin can allocate room to a student
+@login_required
+@user_passes_test(is_admin, login_url='login_view')
 def allocate_room(request):
     if request.method == 'POST':
         student_id = request.POST.get('student_id')
@@ -339,6 +342,8 @@ def allocate_room(request):
     return render(request, 'hostel/allocate_room.html', {'students': students, 'rooms': rooms})
 
 # Admin - View all fees
+@login_required
+@user_passes_test(is_admin, login_url='login_view')
 def fees_dashboard(request):
     # Total fees collected
     total_fees_collected = Fee.objects.filter(paid=True).aggregate(Sum('amount'))['amount__sum'] or 0
@@ -357,6 +362,8 @@ def fees_dashboard(request):
     return render(request, 'accounts/fees_dashboard.html', context)
 
 # Admin - Mark fee as paid
+@login_required
+@user_passes_test(is_admin, login_url='login_view')
 def mark_fee_paid(request, fee_id):
     fee = Fee.objects.get(id=fee_id)
     fee.paid = True
@@ -365,11 +372,15 @@ def mark_fee_paid(request, fee_id):
     return redirect('fees_dashboard')
 
 # Admin/Staff view all complaints
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def all_complaints(request):
     complaints = Complaint.objects.all()
     return render(request, 'accounts/all_complaints.html', {'complaints': complaints})
 
 # Mark complaint as resolved
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def resolve_complaint(request, complaint_id):
     complaint = Complaint.objects.get(id=complaint_id)
     complaint.status = 'resolved'
@@ -377,6 +388,8 @@ def resolve_complaint(request, complaint_id):
     return redirect('all_complaints')
 
 # Reports
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def dashboard_reports(request):
     # Total fees collected
     total_fees_collected = Fee.objects.filter(paid=True).aggregate(Sum('amount'))['amount__sum'] or 0
@@ -431,6 +444,8 @@ def trigger_emergency(request):
         return redirect('student_dashboard')
     return render(request, 'accounts/trigger_emergency.html')
 
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def add_task(request):
     if request.method == 'POST':
         task_text = request.POST.get('task')
@@ -439,6 +454,8 @@ def add_task(request):
     return render(request, 'hostel/add_task.html')
 
 # Send notification
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def send_notification(request):
     if request.method == 'POST':
         recipient_username = request.POST.get('recipient')
@@ -453,6 +470,8 @@ def send_notification(request):
     return render(request, 'accounts/send_notification.html')
 
 # View all notifications (for admin/staff)
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def notifications_dashboard(request):
     notifications = Notification.objects.all().order_by('-created_at')
     return render(request, 'accounts/notifications_dashboard.html', {'notifications': notifications})
@@ -463,11 +482,15 @@ def my_notifications(request):
     return render(request, 'accounts/my_notifications.html', {'notifications': notifications})
 
 # View all emergencies
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def view_emergencies(request):
     emergencies = EmergencyContact.objects.all().order_by('-created_at')
     return render(request, 'accounts/view_emergencies.html', {'emergencies': emergencies})
 
 # Resolve an emergency
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def resolve_emergency(request, emergency_id):
     emergency = EmergencyContact.objects.get(id=emergency_id)
     emergency.status = 'resolved'
@@ -514,6 +537,8 @@ def admin_login(request):
             messages.error(request, 'Invalid admin credentials')
     return redirect('home')
 
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def student_list(request):
     if request.method == 'POST':
         # Handle form submission
@@ -617,6 +642,8 @@ def add_student_ajax(request):
         'message': 'Invalid request method'
     })
 
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def room_list(request):
     rooms = Room.objects.all()
     return render(request, 'accounts/room_list.html', {'rooms': rooms})
@@ -641,6 +668,8 @@ def fee_payment(request):
     fee_info = Fee.objects.filter(student=request.user).first()
     return render(request, 'accounts/fee_payment.html', {'fee_info': fee_info})
 
+@login_required
+@user_passes_test(lambda u: is_admin(u) or is_staff(u), login_url='login_view')
 def daily_tasks(request):
     tasks = DailyTask.objects.all()
     return render(request, 'accounts/daily_tasks.html', {'tasks': tasks})
