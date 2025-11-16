@@ -51,9 +51,19 @@ class Command(BaseCommand):
             
             # Check if user already exists
             if User.objects.filter(username=username).exists():
-                self.stdout.write(
-                    self.style.WARNING(f'User {username} already exists, skipping...')
-                )
+                # Update existing user's group membership
+                user = User.objects.get(username=username)
+                group = Group.objects.get(name=user_data['group'])
+                if not user.groups.filter(name=user_data['group']).exists():
+                    user.groups.add(group)
+                    user.save()
+                    self.stdout.write(
+                        self.style.SUCCESS(f'Updated {username} - added to {user_data["group"]} group')
+                    )
+                else:
+                    self.stdout.write(
+                        self.style.WARNING(f'User {username} already exists and is in {user_data["group"]} group')
+                    )
                 continue
             
             # Create user

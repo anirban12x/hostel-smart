@@ -15,13 +15,21 @@ import json
 
 # Helper functions to check groups
 def is_student(user):
-    return user.groups.filter(name='students').exists()
+    result = user.groups.filter(name='students').exists()
+    print(f"DEBUG: is_student check for {user.username}: {result}")
+    print(f"DEBUG: User groups: {[g.name for g in user.groups.all()]}")
+    print(f"DEBUG: User role: {getattr(user, 'role', 'No role')}")
+    return result
 
 def is_staff(user):
-    return user.groups.filter(name='staff').exists()
+    result = user.groups.filter(name='staff').exists()
+    print(f"DEBUG: is_staff check for {user.username}: {result}")
+    return result
 
 def is_admin(user):
-    return user.groups.filter(name='admins').exists()
+    result = user.groups.filter(name='admins').exists()
+    print(f"DEBUG: is_admin check for {user.username}: {result}")
+    return result
 
 # Student Dashboard
 @login_required
