@@ -225,6 +225,12 @@ def student_signup(request):
                 role='student'
             )
 
+            # Add user to students group
+            from django.contrib.auth.models import Group
+            students_group, created = Group.objects.get_or_create(name='students')
+            user.groups.add(students_group)
+            user.save()
+
             # Create Student profile
             student = Student.objects.create(
                 roll_no=roll_no,
@@ -282,6 +288,12 @@ def staff_signup(request):
                 last_name=last_name,
                 role='staff'
             )
+            
+            # Add user to staff group
+            from django.contrib.auth.models import Group
+            staff_group, created = Group.objects.get_or_create(name='staff')
+            user.groups.add(staff_group)
+            user.save()
             
             # Log the user in
             login(request, user)

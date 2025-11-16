@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import Group
 from ACCOUNTS.models import User
 from HOSTEL.models import Student
 
@@ -7,6 +8,13 @@ class Command(BaseCommand):
     help = 'Create test users for the hostel management system'
 
     def handle(self, *args, **options):
+        # First create groups if they don't exist
+        groups = ['students', 'staff', 'admins']
+        for group_name in groups:
+            group, created = Group.objects.get_or_create(name=group_name)
+            if created:
+                self.stdout.write(self.style.SUCCESS(f'Created group: {group_name}'))
+
         # Create test users
         test_users = [
             {
@@ -15,6 +23,7 @@ class Command(BaseCommand):
                 'first_name': 'John',
                 'last_name': 'Doe',
                 'role': 'student',
+                'group': 'students',
                 'password': 'testpass123'
             },
             {
@@ -23,6 +32,7 @@ class Command(BaseCommand):
                 'first_name': 'Jane',
                 'last_name': 'Smith',
                 'role': 'staff',
+                'group': 'staff',
                 'password': 'testpass123'
             },
             {
@@ -31,6 +41,7 @@ class Command(BaseCommand):
                 'first_name': 'Admin',
                 'last_name': 'User',
                 'role': 'admin',
+                'group': 'admins',
                 'password': 'testpass123'
             }
         ]
@@ -55,6 +66,11 @@ class Command(BaseCommand):
                 role=user_data['role']
             )
             
+            # Add user to group
+            group = Group.objects.get(name=user_data['group'])
+            user.groups.add(group)
+            user.save()
+            
             # Create student profile if role is student
             if user_data['role'] == 'student':
                 try:
@@ -70,7 +86,7 @@ class Command(BaseCommand):
                     )
             
             self.stdout.write(
-                self.style.SUCCESS(f'Successfully created {user_data["role"]} user: {username}')
+                self.style.SUCCESS(f'Successfully created {user_data["role"]} user: {username} (group: {user_data["group"]})')
             )
 
         self.stdout.write(
