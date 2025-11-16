@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,67 +18,83 @@
             --success: #38b000;
             --gradient: linear-gradient(135deg, #3a86ff, #8338ec);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', 'Segoe UI', sans-serif;
         }
-        
+
         body {
             color: var(--dark);
             line-height: 1.6;
             background-color: var(--light);
             overflow-x: hidden;
         }
-        
+
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .gradient-text {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
-        
+
         @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        
+
         .pulse {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .feature-card:hover .feature-icon {
             transform: rotateY(180deg);
         }
-        
+
         .testimonial-card {
             transition: all 0.3s ease;
         }
-        
+
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
+
 <body class="bg-gradient-to-br from-blue-50 to-purple-50">
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm">
@@ -85,11 +102,13 @@
             <nav class="flex justify-between items-center py-4">
                 <!-- Logo -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
                         <i class="fas fa-bed text-white text-xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <h1
+                            class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             STAY-SMART
                         </h1>
                         <p class="text-xs text-gray-500 -mt-1">Hostel Management System</p>
@@ -99,30 +118,37 @@
                 <!-- Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" class="font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-                    <a href="#features" class="font-medium text-gray-700 hover:text-blue-600 transition-colors">Features</a>
-                    <a href="#testimonials" class="font-medium text-gray-700 hover:text-blue-600 transition-colors">Testimonials</a>
-                    <a href="#contact" class="font-medium text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                    <a href="#features"
+                        class="font-medium text-gray-700 hover:text-blue-600 transition-colors">Features</a>
+                    <a href="#testimonials"
+                        class="font-medium text-gray-700 hover:text-blue-600 transition-colors">Testimonials</a>
+                    <a href="#contact"
+                        class="font-medium text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
                 </div>
 
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
                     {% if user.is_authenticated %}
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                                {{ user.username|first|upper }}
-                            </div>
-                            <span class="text-gray-700 font-medium hidden sm:block">Welcome, {{ user.username }}</span>
-                            <a href="{% url 'logout' %}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
-                                Logout
-                            </a>
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                            {{ user.username|first|upper }}
                         </div>
-                    {% else %}
-                        <button onclick="openModal('loginModal')" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                            Login
-                        </button>
-                        <a href="{% url 'signup_view' %}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all">
-                            Sign Up Free
+                        <span class="text-gray-700 font-medium hidden sm:block">Welcome, {{ user.username }}</span>
+                        <a href="{% url 'logout' %}"
+                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
+                            Logout
                         </a>
+                    </div>
+                    {% else %}
+                    <button onclick="openModal('loginModal')"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                        Login
+                    </button>
+                    <a href="{% url 'signup_view' %}"
+                        class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all">
+                        Sign Up Free
+                    </a>
                     {% endif %}
                 </div>
 
@@ -136,21 +162,27 @@
             <div id="mobileMenu" class="md:hidden hidden bg-white rounded-lg shadow-lg mt-4 p-4">
                 <div class="flex flex-col space-y-4">
                     <a href="#" class="font-medium text-gray-700 hover:text-blue-600 transition-colors py-2">Home</a>
-                    <a href="#features" class="font-medium text-gray-700 hover:text-blue-600 transition-colors py-2" onclick="toggleMobileMenu()">Features</a>
-                    <a href="#testimonials" class="font-medium text-gray-700 hover:text-blue-600 transition-colors py-2" onclick="toggleMobileMenu()">Testimonials</a>
-                    <a href="#contact" class="font-medium text-gray-700 hover:text-blue-600 transition-colors py-2" onclick="toggleMobileMenu()">Contact</a>
+                    <a href="#features" class="font-medium text-gray-700 hover:text-blue-600 transition-colors py-2"
+                        onclick="toggleMobileMenu()">Features</a>
+                    <a href="#testimonials" class="font-medium text-gray-700 hover:text-blue-600 transition-colors py-2"
+                        onclick="toggleMobileMenu()">Testimonials</a>
+                    <a href="#contact" class="font-medium text-gray-700 hover:text-blue-600 transition-colors py-2"
+                        onclick="toggleMobileMenu()">Contact</a>
                     <div class="border-t pt-4">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'logout' %}" class="block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-center transition-colors">
-                                Logout
-                            </a>
+                        <a href="{% url 'logout' %}"
+                            class="block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-center transition-colors">
+                            Logout
+                        </a>
                         {% else %}
-                            <button onclick="openModal('loginModal'); toggleMobileMenu()" class="w-full text-gray-700 hover:text-blue-600 font-medium py-2 text-center border rounded-lg mb-2">
-                                Login
-                            </button>
-                            <a href="{% url 'signup_view' %}" class="block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg text-center hover:shadow-lg transition-all">
-                                Sign Up Free
-                            </a>
+                        <button onclick="openModal('loginModal'); toggleMobileMenu()"
+                            class="w-full text-gray-700 hover:text-blue-600 font-medium py-2 text-center border rounded-lg mb-2">
+                            Login
+                        </button>
+                        <a href="{% url 'signup_view' %}"
+                            class="block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg text-center hover:shadow-lg transition-all">
+                            Sign Up Free
+                        </a>
                         {% endif %}
                     </div>
                 </div>
@@ -162,34 +194,41 @@
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Elements -->
         <div class="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-600/10"></div>
-        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div class="absolute bottom-20 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        
+        <div
+            class="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse">
+        </div>
+        <div
+            class="absolute bottom-20 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse">
+        </div>
+
         <div class="container mx-auto px-4 text-center relative z-10">
             <!-- Main Heading -->
             <div class="max-w-4xl mx-auto">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+                    <span
+                        class="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
                         Smart Hostel
                     </span>
                     <br>
                     <span class="text-gray-800">Management System</span>
                 </h1>
-                
+
                 <p class="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-                    Transform your hostel experience with AI-powered management, 
+                    Transform your hostel experience with AI-powered management,
                     seamless bookings, and smart campus living.
                 </p>
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                    <a href="#features" class="group bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <a href="#features"
+                        class="group bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                         <span class="flex items-center justify-center gap-3">
                             Explore Features
                             <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </span>
                     </a>
-                    <button onclick="openModal('demoModal')" class="group border-2 border-blue-500 text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-blue-50 transition-all duration-300">
+                    <button onclick="openModal('demoModal')"
+                        class="group border-2 border-blue-500 text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-blue-50 transition-all duration-300">
                         <span class="flex items-center justify-center gap-3">
                             Watch Demo
                             <i class="fas fa-play-circle group-hover:scale-110 transition-transform"></i>
@@ -244,13 +283,16 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="feature-card group p-8 bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-blue-100">
-                    <div class="feature-icon w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
+                <div
+                    class="feature-card group p-8 bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-blue-100">
+                    <div
+                        class="feature-icon w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
                         <i class="fas fa-user-cog"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Student Management</h3>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        Complete student profile management with automated room allocation, attendance tracking, and academic integration.
+                        Complete student profile management with automated room allocation, attendance tracking, and
+                        academic integration.
                     </p>
                     <ul class="text-gray-500 space-y-2">
                         <li class="flex items-center gap-2">
@@ -269,13 +311,16 @@
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="feature-card group p-8 bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-purple-100">
-                    <div class="feature-icon w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
+                <div
+                    class="feature-card group p-8 bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-purple-100">
+                    <div
+                        class="feature-icon w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Fee Management</h3>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        Streamlined fee collection with automated reminders, online payments, and detailed financial reports.
+                        Streamlined fee collection with automated reminders, online payments, and detailed financial
+                        reports.
                     </p>
                     <ul class="text-gray-500 space-y-2">
                         <li class="flex items-center gap-2">
@@ -294,13 +339,16 @@
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="feature-card group p-8 bg-gradient-to-br from-white to-green-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-green-100">
-                    <div class="feature-icon w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
+                <div
+                    class="feature-card group p-8 bg-gradient-to-br from-white to-green-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-green-100">
+                    <div
+                        class="feature-icon w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Maintenance System</h3>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        Efficient complaint management with automated ticketing, priority assignment, and real-time status updates.
+                        Efficient complaint management with automated ticketing, priority assignment, and real-time
+                        status updates.
                     </p>
                     <ul class="text-gray-500 space-y-2">
                         <li class="flex items-center gap-2">
@@ -319,8 +367,10 @@
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="feature-card group p-8 bg-gradient-to-br from-white to-orange-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-orange-100">
-                    <div class="feature-icon w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
+                <div
+                    class="feature-card group p-8 bg-gradient-to-br from-white to-orange-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-orange-100">
+                    <div
+                        class="feature-icon w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
                         <i class="fas fa-bell"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Notification System</h3>
@@ -344,8 +394,10 @@
                 </div>
 
                 <!-- Feature 5 -->
-                <div class="feature-card group p-8 bg-gradient-to-br from-white to-red-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-red-100">
-                    <div class="feature-icon w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
+                <div
+                    class="feature-card group p-8 bg-gradient-to-br from-white to-red-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-red-100">
+                    <div
+                        class="feature-icon w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
                         <i class="fas fa-chart-bar"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Analytics & Reports</h3>
@@ -369,8 +421,10 @@
                 </div>
 
                 <!-- Feature 6 -->
-                <div class="feature-card group p-8 bg-gradient-to-br from-white to-indigo-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-indigo-100">
-                    <div class="feature-icon w-16 h-16 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
+                <div
+                    class="feature-card group p-8 bg-gradient-to-br from-white to-indigo-50 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-indigo-100">
+                    <div
+                        class="feature-icon w-16 h-16 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 transition-transform duration-500">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Security & Access</h3>
@@ -412,7 +466,8 @@
                 <!-- Testimonial 1 -->
                 <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
                     <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
                             SK
                         </div>
                         <div>
@@ -421,7 +476,8 @@
                         </div>
                     </div>
                     <div class="text-gray-600 leading-relaxed mb-4">
-                        "STAY-SMART made my hostel life so much easier! The room allocation was seamless, and I love the mobile app for fee payments and complaint tracking."
+                        "STAY-SMART made my hostel life so much easier! The room allocation was seamless, and I love the
+                        mobile app for fee payments and complaint tracking."
                     </div>
                     <div class="flex text-yellow-400">
                         <i class="fas fa-star"></i>
@@ -435,7 +491,8 @@
                 <!-- Testimonial 2 -->
                 <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
                     <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
                             RJ
                         </div>
                         <div>
@@ -444,7 +501,8 @@
                         </div>
                     </div>
                     <div class="text-gray-600 leading-relaxed mb-4">
-                        "As a warden, STAY-SMART has reduced my administrative workload by 70%. The automated reports and student management features are incredible."
+                        "As a warden, STAY-SMART has reduced my administrative workload by 70%. The automated reports
+                        and student management features are incredible."
                     </div>
                     <div class="flex text-yellow-400">
                         <i class="fas fa-star"></i>
@@ -458,7 +516,8 @@
                 <!-- Testimonial 3 -->
                 <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
                     <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
                             PP
                         </div>
                         <div>
@@ -467,7 +526,8 @@
                         </div>
                     </div>
                     <div class="text-gray-600 leading-relaxed mb-4">
-                        "The analytics dashboard provides amazing insights. We've improved occupancy rates by 25% and reduced operational costs significantly."
+                        "The analytics dashboard provides amazing insights. We've improved occupancy rates by 25% and
+                        reduced operational costs significantly."
                     </div>
                     <div class="flex text-yellow-400">
                         <i class="fas fa-star"></i>
@@ -484,7 +544,8 @@
                 <!-- Testimonial 4 -->
                 <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
                     <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
                             AK
                         </div>
                         <div>
@@ -493,7 +554,8 @@
                         </div>
                     </div>
                     <div class="text-gray-600 leading-relaxed mb-4">
-                        "Coming from abroad, I was worried about accommodation. STAY-SMART made the process so smooth with their online booking and virtual tours."
+                        "Coming from abroad, I was worried about accommodation. STAY-SMART made the process so smooth
+                        with their online booking and virtual tours."
                     </div>
                     <div class="flex text-yellow-400">
                         <i class="fas fa-star"></i>
@@ -507,7 +569,8 @@
                 <!-- Testimonial 5 -->
                 <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
                     <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
                             SR
                         </div>
                         <div>
@@ -516,7 +579,8 @@
                         </div>
                     </div>
                     <div class="text-gray-600 leading-relaxed mb-4">
-                        "As a parent, I appreciate the transparency and security STAY-SMART provides. I can track fee payments and get updates about my daughter's hostel."
+                        "As a parent, I appreciate the transparency and security STAY-SMART provides. I can track fee
+                        payments and get updates about my daughter's hostel."
                     </div>
                     <div class="flex text-yellow-400">
                         <i class="fas fa-star"></i>
@@ -550,20 +614,27 @@
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" placeholder="John">
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    placeholder="John">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" placeholder="Doe">
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    placeholder="Doe">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" placeholder="john@example.com">
+                            <input type="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                placeholder="john@example.com">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                            <select
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
                                 <option>General Inquiry</option>
                                 <option>Technical Support</option>
                                 <option>Feature Request</option>
@@ -573,9 +644,12 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" placeholder="Tell us about your requirements..."></textarea>
+                            <textarea rows="5"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                placeholder="Tell us about your requirements..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                             Send Message
                         </button>
                     </form>
@@ -644,16 +718,20 @@
                     <div class="pt-6">
                         <h4 class="font-semibold text-gray-900 mb-4">Follow Us</h4>
                         <div class="flex space-x-4">
-                            <a href="#" class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center hover:bg-blue-700 transition-colors">
+                            <a href="#"
+                                class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center hover:bg-blue-700 transition-colors">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-blue-400 text-white rounded-xl flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <a href="#"
+                                class="w-12 h-12 bg-blue-400 text-white rounded-xl flex items-center justify-center hover:bg-blue-500 transition-colors">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-pink-600 text-white rounded-xl flex items-center justify-center hover:bg-pink-700 transition-colors">
+                            <a href="#"
+                                class="w-12 h-12 bg-pink-600 text-white rounded-xl flex items-center justify-center hover:bg-pink-700 transition-colors">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-blue-700 text-white rounded-xl flex items-center justify-center hover:bg-blue-800 transition-colors">
+                            <a href="#"
+                                class="w-12 h-12 bg-blue-700 text-white rounded-xl flex items-center justify-center hover:bg-blue-800 transition-colors">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </div>
@@ -673,10 +751,12 @@
                 Join thousands of students and hostel managers who trust STAY-SMART for seamless hostel management.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{% url 'signup_view' %}" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                <a href="{% url 'signup_view' %}"
+                    class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                     Get Started Free
                 </a>
-                <button onclick="openModal('contactModal')" class="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
+                <button onclick="openModal('contactModal')"
+                    class="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
                     Schedule Demo
                 </button>
             </div>
@@ -690,7 +770,8 @@
                 <!-- Company Info -->
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
                             <i class="fas fa-bed text-white"></i>
                         </div>
                         <span class="text-xl font-bold">STAY-SMART</span>
@@ -699,13 +780,16 @@
                         Revolutionizing hostel management with smart technology and exceptional user experience.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-400 transition-colors">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-400 transition-colors">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-colors">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-colors">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
@@ -773,13 +857,18 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-                        <input type="text" name="username" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your username" required>
+                        <input type="text" name="username"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter your username" required>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                        <input type="password" name="password" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your password" required>
+                        <input type="password" name="password"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
                         Sign In
                     </button>
                 </div>
@@ -792,24 +881,24 @@
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
         }
-        
+
         function closeModal(modalId) {
             document.getElementById(modalId).classList.add('hidden');
         }
-        
+
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
         }
-        
+
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target.classList.contains('fixed')) {
                 event.target.classList.add('hidden');
             }
         }
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -825,4 +914,5 @@
         });
     </script>
 </body>
+
 </html>
