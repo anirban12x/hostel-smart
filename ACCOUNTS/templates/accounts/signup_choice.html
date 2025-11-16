@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STAY-SMART HMS - Authentication</title>
+    <title>Sign Up - STAY-SMART HMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -13,14 +14,14 @@
             --secondary: #ff9e00;
             --accent: #8338ec;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
@@ -29,58 +30,58 @@
             justify-content: center;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 1200px;
             width: 100%;
         }
-        
+
         .card {
             background: white;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             max-width: 500px;
             width: 100%;
             margin: 0 auto;
         }
-        
+
         .hidden {
             display: none !important;
         }
-        
+
         .logo {
             text-align: center;
             margin-bottom: 30px;
         }
-        
+
         .logo i {
             color: #3a86ff;
             font-size: 3rem;
         }
-        
+
         .logo h1 {
             color: #3a86ff;
             margin: 10px 0 5px 0;
             font-size: 2rem;
         }
-        
+
         .logo span {
             color: #ff9e00;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
             color: #1a1a2e;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 12px 15px;
@@ -89,13 +90,13 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .form-control:focus {
             outline: none;
             border-color: #3a86ff;
             box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.1);
         }
-        
+
         .btn {
             display: inline-block;
             padding: 12px 24px;
@@ -108,45 +109,45 @@
             width: 100%;
             margin-top: 10px;
         }
-        
+
         .btn-primary {
             background-color: var(--primary);
             color: white;
         }
-        
+
         .btn-primary:hover {
             background-color: var(--primary-dark);
         }
-        
+
         .btn-secondary {
             background-color: #6c757d;
             color: white;
         }
-        
+
         .btn-secondary:hover {
             background-color: #5a6268;
         }
-        
+
         .switch-text {
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid #e9ecef;
         }
-        
+
         .switch-text a {
             color: #3a86ff;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
         }
-        
+
         .user-type-selector {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
         }
-        
+
         .user-type-btn {
             flex: 1;
             padding: 12px;
@@ -157,32 +158,32 @@
             transition: all 0.3s ease;
             text-align: center;
         }
-        
+
         .user-type-btn.active {
             border-color: #3a86ff;
             background: #3a86ff;
             color: white;
         }
-        
+
         .user-type-btn i {
             display: block;
             font-size: 1.5rem;
             margin-bottom: 5px;
         }
-        
+
         .alert {
             padding: 12px 16px;
             border-radius: 8px;
             margin-bottom: 20px;
             font-weight: 500;
         }
-        
+
         .alert-success {
             background: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-        
+
         .alert-error {
             background: #f8d7da;
             color: #721c24;
@@ -190,313 +191,74 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Main Choice Card -->
-        <div id="main-card" class="card">
-            <div class="logo">
-                <i class="fas fa-bed fa-3x"></i>
-                <h1>STAY<span>SMART</span></h1>
-                <p>Hostel Management System</p>
+
+<body class="bg-gradient-to-br from-blue-400 to-purple-600 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <div
+                class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-bed text-white text-3xl"></i>
             </div>
-            
-            <h2 style="text-align: center; color: #1a1a2e; margin-bottom: 30px;">Welcome to STAY-SMART</h2>
-            
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <button class="btn btn-primary" onclick="showLogin()">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-                <button class="btn btn-secondary" onclick="showSignup()">
-                    <i class="fas fa-user-plus"></i> Sign Up
-                </button>
-            </div>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                STAY-SMART
+            </h1>
+            <p class="text-gray-500 text-sm">Hostel Management System</p>
         </div>
 
-        <!-- Login Card -->
-        <div id="login-card" class="card hidden">
-            <div class="logo">
-                <i class="fas fa-sign-in-alt fa-2x"></i>
-                <h1>Login</h1>
-                <p>Access your account</p>
-            </div>
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-gray-800 text-center mb-8">Choose Your Role</h2>
 
-            <div id="login-alert"></div>
-
-            <div class="user-type-selector">
-                <div class="user-type-btn active" data-role="student" onclick="selectUserType('student')">
-                    <i class="fas fa-user-graduate"></i>
-                    Student
+        <!-- Role Selection -->
+        <div class="space-y-4">
+            <a href="{% url 'student_signup' %}"
+                class="flex items-center justify-between w-full p-4 border-2 border-blue-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all group">
+                <div class="flex items-center space-x-4">
+                    <div
+                        class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                        <i class="fas fa-user-graduate text-blue-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Student</h3>
+                        <p class="text-gray-500 text-sm">Join as a hostel resident</p>
+                    </div>
                 </div>
-                <div class="user-type-btn" data-role="staff" onclick="selectUserType('staff')">
-                    <i class="fas fa-user-tie"></i>
-                    Staff
+                <i class="fas fa-arrow-right text-blue-600 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <a href="{% url 'staff_signup' %}"
+                class="flex items-center justify-between w-full p-4 border-2 border-purple-200 rounded-xl hover:border-purple-500 hover:bg-purple-50 transition-all group">
+                <div class="flex items-center space-x-4">
+                    <div
+                        class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                        <i class="fas fa-user-tie text-purple-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Staff</h3>
+                        <p class="text-gray-500 text-sm">Register as hostel staff</p>
+                    </div>
                 </div>
-            </div>
-
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="loginUsername">Username</label>
-                    <input type="text" id="loginUsername" class="form-control" placeholder="Enter your username" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-sign-in-alt"></i> Login to Account
-                </button>
-            </form>
-
-            <div class="switch-text">
-                <p>Don't have an account? <a onclick="showSignup()">Sign up here</a></p>
-                <button class="btn btn-secondary" onclick="showMainCard()">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-            </div>
+                <i class="fas fa-arrow-right text-purple-600 group-hover:translate-x-1 transition-transform"></i>
+            </a>
         </div>
 
-        <!-- Signup Card -->
-        <div id="signup-card" class="card hidden">
-            <div class="logo">
-                <i class="fas fa-user-plus fa-2x"></i>
-                <h1>Sign Up</h1>
-                <p>Create your account</p>
-            </div>
+        <!-- Login Link -->
+        <div class="text-center mt-8 pt-6 border-t border-gray-200">
+            <p class="text-gray-600 mb-4">Already have an account?</p>
+            <a href="{% url 'login_view' %}"
+                class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+                Sign In
+            </a>
+        </div>
 
-            <div id="signup-alert"></div>
-
-            <div class="user-type-selector">
-                <div class="user-type-btn active" data-role="student" onclick="selectSignupType('student')">
-                    <i class="fas fa-user-graduate"></i>
-                    Student
-                </div>
-                <div class="user-type-btn" data-role="staff" onclick="selectSignupType('staff')">
-                    <i class="fas fa-user-tie"></i>
-                    Staff
-                </div>
-            </div>
-
-            <form id="signupForm" onsubmit="handleSignup(event)">
-                <div class="form-group">
-                    <label for="signupFullName">Full Name</label>
-                    <input type="text" id="signupFullName" class="form-control" placeholder="Enter your full name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="signupUsername">Username</label>
-                    <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" class="form-control" placeholder="Confirm your password" required>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="terms" required>
-                        I agree to the <a href="#" style="color: #3a86ff;">Terms and Conditions</a>
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
-            </form>
-
-            <div class="switch-text">
-                <p>Already have an account? <a onclick="showLogin()">Login here</a></p>
-                <button class="btn btn-secondary" onclick="showMainCard()">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-            </div>
+        <!-- Home Link -->
+        <div class="text-center mt-4">
+            <a href="{% url 'home' %}" class="text-gray-500 hover:text-gray-700 text-sm">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+            </a>
         </div>
     </div>
 
-    <script>
-        // User data storage (simulates database)
-        const users = JSON.parse(localStorage.getItem('staySmartUsers')) || [];
-        let currentUserType = 'student';
-
-        // Navigation functions
-        function showMainCard() {
-            document.getElementById('main-card').classList.remove('hidden');
-            document.getElementById('login-card').classList.add('hidden');
-            document.getElementById('signup-card').classList.add('hidden');
-            clearAlerts();
-        }
-
-        function showLogin() {
-            document.getElementById('main-card').classList.add('hidden');
-            document.getElementById('login-card').classList.remove('hidden');
-            document.getElementById('signup-card').classList.add('hidden');
-            clearAlerts();
-        }
-
-        function showSignup() {
-            document.getElementById('main-card').classList.add('hidden');
-            document.getElementById('login-card').classList.add('hidden');
-            document.getElementById('signup-card').classList.remove('hidden');
-            clearAlerts();
-        }
-
-        // User type selection
-        function selectUserType(type) {
-            currentUserType = type;
-            document.querySelectorAll('#login-card .user-type-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`#login-card [data-role="${type}"]`).classList.add('active');
-        }
-
-        function selectSignupType(type) {
-            currentUserType = type;
-            document.querySelectorAll('#signup-card .user-type-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`#signup-card [data-role="${type}"]`).classList.add('active');
-        }
-
-        // Alert functions
-        function showAlert(type, message, containerId) {
-            const alertDiv = document.createElement('div');
-            alertDiv.className = `alert alert-${type}`;
-            alertDiv.textContent = message;
-            document.getElementById(containerId).innerHTML = '';
-            document.getElementById(containerId).appendChild(alertDiv);
-        }
-
-        function clearAlerts() {
-            document.getElementById('login-alert').innerHTML = '';
-            document.getElementById('signup-alert').innerHTML = '';
-        }
-
-        // Form handlers
-        function handleSignup(event) {
-            event.preventDefault();
-            
-            const fullName = document.getElementById('signupFullName').value;
-            const email = document.getElementById('signupEmail').value;
-            const username = document.getElementById('signupUsername').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-            const terms = document.getElementById('terms').checked;
-
-            // Validation
-            if (!terms) {
-                showAlert('error', 'Please agree to the Terms and Conditions', 'signup-alert');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                showAlert('error', 'Passwords do not match!', 'signup-alert');
-                return;
-            }
-
-            if (password.length < 6) {
-                showAlert('error', 'Password must be at least 6 characters long!', 'signup-alert');
-                return;
-            }
-
-            // Check if username already exists
-            if (users.find(user => user.username === username)) {
-                showAlert('error', 'Username already exists! Please choose another one.', 'signup-alert');
-                return;
-            }
-
-            // Create new user
-            const newUser = {
-                id: Date.now(),
-                fullName,
-                email,
-                username,
-                password, // In real app, this should be hashed
-                role: currentUserType,
-                createdAt: new Date().toISOString()
-            };
-
-            // Save user
-            users.push(newUser);
-            localStorage.setItem('staySmartUsers', JSON.stringify(users));
-
-            showAlert('success', `Account created successfully! You can now login as ${currentUserType}.`, 'signup-alert');
-            
-            // Clear form
-            document.getElementById('signupForm').reset();
-            
-            // Auto switch to login after 2 seconds
-            setTimeout(() => {
-                showLogin();
-                // Pre-fill username
-                document.getElementById('loginUsername').value = username;
-                selectUserType(currentUserType);
-            }, 2000);
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-
-            // Find user
-            const user = users.find(u => u.username === username && u.password === password);
-
-            if (user) {
-                // Check if user type matches
-                if (user.role !== currentUserType) {
-                    showAlert('error', `This account is registered as ${user.role}. Please select ${user.role} login.`, 'login-alert');
-                    return;
-                }
-
-                // Save current session
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                
-                showAlert('success', `Login successful! Welcome back, ${user.fullName}`, 'login-alert');
-                
-                // Redirect to dashboard based on role after 1 second
-                setTimeout(() => {
-                    if (user.role === 'student') {
-                        window.location.href = 'student-dashboard.html';
-                    } else if (user.role === 'staff') {
-                        window.location.href = 'staff-dashboard.html';
-                    }
-                }, 1000);
-                
-            } else {
-                showAlert('error', 'Invalid username or password!', 'login-alert');
-            }
-        }
-
-        // Check if user is already logged in
-        function checkExistingSession() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser) {
-                if (currentUser.role === 'student') {
-                    window.location.href = 'student-dashboard.html';
-                } else if (currentUser.role === 'staff') {
-                    window.location.href = 'staff-dashboard.html';
-                }
-            }
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            checkExistingSession();
-            showMainCard();
-        });
-    </script>
 </body>
+
 </html>
