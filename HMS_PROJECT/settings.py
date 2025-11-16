@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-^6(ba(%zmvl94b3+8j#n_)e#!0uk$a-*_gvpzppu!$xv*!wh%(')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = True  # Temporarily enabled for debugging
 
 ALLOWED_HOSTS = ['hostel-smart.onrender.com', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
