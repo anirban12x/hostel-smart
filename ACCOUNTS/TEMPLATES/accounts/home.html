@@ -120,7 +120,7 @@
                         <button onclick="openModal('loginModal')" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                             Login
                         </button>
-                        <a href="{% url 'signup' %}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all">
+                        <a href="{% url 'signup_view' %}" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all">
                             Sign Up Free
                         </a>
                     {% endif %}
@@ -148,7 +148,7 @@
                             <button onclick="openModal('loginModal'); toggleMobileMenu()" class="w-full text-gray-700 hover:text-blue-600 font-medium py-2 text-center border rounded-lg mb-2">
                                 Login
                             </button>
-                            <a href="{% url 'signup' %}" class="block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg text-center hover:shadow-lg transition-all">
+                            <a href="{% url 'signup_view' %}" class="block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg text-center hover:shadow-lg transition-all">
                                 Sign Up Free
                             </a>
                         {% endif %}
@@ -673,7 +673,7 @@
                 Join thousands of students and hostel managers who trust STAY-SMART for seamless hostel management.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{% url 'signup' %}" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                <a href="{% url 'signup_view' %}" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                     Get Started Free
                 </a>
                 <button onclick="openModal('contactModal')" class="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
