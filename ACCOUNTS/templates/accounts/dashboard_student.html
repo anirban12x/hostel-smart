@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,7 @@
             padding: 30px 20px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             cursor: pointer;
             position: relative;
@@ -80,12 +81,29 @@
         }
 
         /* Card Colors */
-        .dashboard-card.notification { border-top-color: #3a86ff; }
-        .dashboard-card.emergency { border-top-color: #ff4757; }
-        .dashboard-card.complaint { border-top-color: #ffa502; }
-        .dashboard-card.fee { border-top-color: #2ed573; }
-        .dashboard-card.room { border-top-color: #3742fa; }
-        .dashboard-card.tasks { border-top-color: #ff6348; }
+        .dashboard-card.notification {
+            border-top-color: #3a86ff;
+        }
+
+        .dashboard-card.emergency {
+            border-top-color: #ff4757;
+        }
+
+        .dashboard-card.complaint {
+            border-top-color: #ffa502;
+        }
+
+        .dashboard-card.fee {
+            border-top-color: #2ed573;
+        }
+
+        .dashboard-card.room {
+            border-top-color: #3742fa;
+        }
+
+        .dashboard-card.tasks {
+            border-top-color: #ff6348;
+        }
 
         .logout-btn {
             position: fixed;
@@ -101,6 +119,7 @@
         }
     </style>
 </head>
+
 <body>
     <button class="logout-btn" onclick="logout()">
         <i class="fas fa-sign-out-alt"></i> Logout
@@ -108,77 +127,66 @@
 
     <div class="dashboard-container">
         <h2 class="dashboard-title">🎓 Student Dashboard</h2>
-        
+
         <div class="welcome-section">
-            <h3 id="welcome-message">Welcome, Student!</h3>
+            <h3>Welcome, {{ user.first_name|default:user.username }}!</h3>
             <p>Manage your hostel activities from here</p>
         </div>
 
         <div class="dashboard-grid">
-            <div class="dashboard-card notification">
+            <a href="{% url 'my_notifications' %}" class="dashboard-card notification"
+                style="text-decoration: none; color: inherit;">
                 <i class="fas fa-bell"></i>
                 <h3>Notifications</h3>
                 <p>Check your alerts</p>
-                <span class="badge">3 new</span>
-            </div>
+                {% if notifications %}
+                <span class="badge">{{ notifications.count }} new</span>
+                {% endif %}
+            </a>
 
-            <div class="dashboard-card emergency">
+            <a href="{% url 'trigger_emergency' %}" class="dashboard-card emergency"
+                style="text-decoration: none; color: inherit;">
                 <i class="fas fa-exclamation-triangle"></i>
                 <h3>Emergency</h3>
                 <p>Trigger emergency alert</p>
-            </div>
+            </a>
 
-            <div class="dashboard-card complaint">
+            <a href="{% url 'submit_complaint' %}" class="dashboard-card complaint"
+                style="text-decoration: none; color: inherit;">
                 <i class="fas fa-comment-dots"></i>
                 <h3>Complaints</h3>
                 <p>Submit complaints</p>
-            </div>
+            </a>
 
-            <div class="dashboard-card fee">
+            <a href="{% url 'student_fees' %}" class="dashboard-card fee"
+                style="text-decoration: none; color: inherit;">
                 <i class="fas fa-money-bill-wave"></i>
                 <h3>Fee Payment</h3>
                 <p>Pay hostel fees</p>
-            </div>
+                {% if fee_info and not fee_info.paid %}
+                <span class="badge">Due: ${{ fee_info.amount }}</span>
+                {% endif %}
+            </a>
 
-            <div class="dashboard-card room">
+            <a href="#" class="dashboard-card room" style="text-decoration: none; color: inherit;">
                 <i class="fas fa-bed"></i>
                 <h3>My Room</h3>
-                <p>Room details</p>
-            </div>
+                <p>{% if room_info %}Room {{ room_info.room.number }}{% else %}Not assigned{% endif %}</p>
+            </a>
 
-            <div class="dashboard-card tasks">
+            <a href="#" class="dashboard-card tasks" style="text-decoration: none; color: inherit;">
                 <i class="fas fa-tasks"></i>
                 <h3>Daily Tasks</h3>
                 <p>View tasks</p>
-            </div>
+            </a>
         </div>
     </div>
 
     <script>
-        // Check if user is logged in and is a student
-        function checkAuth() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser) {
-                window.location.href = 'index.html';
-                return;
-            }
-            if (currentUser.role !== 'student') {
-                alert('Access denied! This is student dashboard.');
-                window.location.href = 'index.html';
-                return;
-            }
-            
-            // Update welcome message
-            document.getElementById('welcome-message').textContent = `Welcome, ${currentUser.fullName}!`;
-        }
-
         function logout() {
-            localStorage.removeItem('currentUser');
-            window.location.href = 'index.html';
+            window.location.href = "{% url 'logout' %}";
         }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', checkAuth);
     </script>
 </body>
+
 </html>

@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-^6(ba(%zmvl94b3+8j#n_)e#!0uk$a-*_gvpzppu!$xv*!wh%(')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Temporarily enabled for debugging
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = ['hostel-smart.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['hostel-smart.onrender.com', 'localhost', '127.0.0.1', 'testserver']
 ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
 if ALLOWED_HOSTS_ENV:
     ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
@@ -50,10 +50,8 @@ INSTALLED_APPS = [
 
 #custom user models
 
-AUTH_USER_MODEL = 'HOSTEL.User'
 AUTH_USER_MODEL = 'ACCOUNTS.User'
 LOGIN_URL = 'login_view'
-LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 MIDDLEWARE = [
